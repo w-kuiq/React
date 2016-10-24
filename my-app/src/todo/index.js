@@ -22,22 +22,27 @@ var Todo = React.createClass({
                 <TodoList
                     items={this.state.items}
                     onDelete={this.onDelete}
+                    onEdit={this.onEdit}
                 />
             </div>
         )
     },
     keydown: function(e) {
         if (e && e.keyCode === 13) { // enter 键
-            var items =this.state.items,
-                text = this.state.value;
-            items.push({
-                text:text,
-                id:items.length+1
-            });
-            this.setState({
-                items:items,
-                value:''
-            });
+            if (this.state.value!=='') {
+                var items =this.state.items,
+                    text = this.state.value;
+                items.push({
+                    text:text,
+                    id:items.length+1
+                });
+                this.setState({
+                    items:items,
+                    value:''
+                });
+            }else{
+                alert("Please don't enter an empty string")
+            }
         }
     },
     onChange:function (e) {
@@ -52,12 +57,12 @@ var Todo = React.createClass({
             if (items[i].id !== o.id) {
                 newItems.push(items[i]);
             }
-        }
-
-        console.log(newItems);
+        };
         this.setState({
             items:newItems
         })
+    },
+    onEdit:function (o) {
     }
 });
 module.exports = Todo;

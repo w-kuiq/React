@@ -7,12 +7,13 @@ var TodoList = React.createClass({
             return(
                 <li key={o.id}>
                     <div>
-                        <label>{o.text}</label>
+                        <label onDoubleClick={_this.edit.bind(_this,0)} >{o.text}</label>
                         <button className="destroy" onClick={_this.delete.bind(_this,o)}></button>
                     </div>
+                    <input className="edit" value={o.text}/>
                 </li>
             )
-        })
+        });
         return(
             <section className="main">
                 <ul className="todo-list">
@@ -23,6 +24,9 @@ var TodoList = React.createClass({
     },
     delete:function (o) {
         this.props.onDelete(o);
+    },
+    edit:function (o) {
+        this.props.onEdit(o);
     },
 
 });
