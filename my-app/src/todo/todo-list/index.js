@@ -7,7 +7,7 @@ var TodoList = React.createClass({
             return(
                 <li key={o.id}>
                     <div>
-                        <label onDoubleClick={_this.edit.bind(_this,0)} >{o.text}</label>
+                        <label onDoubleClick={_this.edit.bind(_this,o)} >{o.text}</label>
                         <button className="destroy" onClick={_this.delete.bind(_this,o)}></button>
                     </div>
                     <input className="edit" value={o.text}/>
